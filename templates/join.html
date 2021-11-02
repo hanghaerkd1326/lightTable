@@ -16,16 +16,19 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
         <script>
-            // 간단한 회원가입 함수입니다.
-            // 이름, 이메일, 비밀번호를 받아 DB에 저장합니다.
-            function register() {
+            function checkEmail() {
+
+            }
+
+            function sign_up() {
                 $.ajax({
                     type: "POST",
-                    url: "/api/join",
+                    url: "/join",
                     data: {
-                        name_give: $('#username').val(),
-                        email_give: $('#useremail').val(),
-                        password_give: $('#userpw').val(),
+                        username_give: $('#username').val(),
+                        email_give: $('#email').val(),
+                        password_give: $('#password').val(),
+                        checkpw_give: $('#checkpw').val(),
                     },
                     success: function (response) {
                         if (response['result'] == 'success') {
@@ -58,27 +61,27 @@
                 </div>
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label" for="useremail">email</label>
+                        <label class="label" for="email">email</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input type="email" class="input" id="useremail" aria-describedby="emailHelp"
+                                <input type="email" class="input" id="email" aria-describedby="emailHelp"
                                        pattern=".+@globex\.com" size="30" required
                                        placeholder="email을 입력하세요.">
                             </div>
                         </div>
                     </div>
-                    <button>중복확인</button>
+                    <button onclick="checkEmail()">중복확인</button>
                 </div>
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label" for="userpw">비밀번호</label>
+                        <label class="label" for="password">비밀번호</label>
                     </div>
                     <div class="field-body">
                         <div class="field">
                             <div class="control">
-                                <input type="password" class="input" id="userpw" placeholder="비밀번호를 입력하세요." required>
+                                <input type="password" class="input" id="password" placeholder="비밀번호를 입력하세요." required>
                             </div>
                         </div>
                     </div>
@@ -95,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="button is-primary" onclick="register()">회원가입</button>
+                <button class="button is-primary" onclick="sign_up()">회원가입</button>
             </div>
         </div>
     </body>
